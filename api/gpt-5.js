@@ -22,7 +22,12 @@ export default async function handler(req, res) {
     }
 
     const apiUrl = `https://api-rebix.vercel.app/api/gpt-5?q=${encodeURIComponent(q)}`;
-    const response = await fetch(apiUrl);
+    const response = await fetch(apiUrl, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "application/json"
+      }
+    });
     
     if (!response.ok) {
       throw new Error(`Old API responded with status: ${response.status}`);
